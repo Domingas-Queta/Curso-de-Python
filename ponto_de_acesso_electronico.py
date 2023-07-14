@@ -21,6 +21,7 @@ Menu de opções:
 [1] - Inserir nova aluna
 [2] - Registrar presença
 [3] - Visualizar alunas
+[4] - Visualizar presenças
 [9] - Sair
 
 """)
@@ -54,7 +55,7 @@ Menu de opções:
                 hora_da_entrada = input("Digite a hora de entrada: ")
                 presenca = {
                     identidade: {
-                        "aluna": aluna,
+                        **aluna,
                         "hora_de_entrada": hora_da_entrada,
                         "hora_de_saida": "",
                         "data": date.today().isoformat()
@@ -92,6 +93,16 @@ Menu de opções:
         for index, aluna in enumerate(alunas.values()):
             mensagem = f"{index + 1}º - {aluna.get('nome')}"
             print(mensagem)
+    if opcao == "4":
+        print("****** Listas de presenças ******")
+        for  index, presenca in enumerate(presencas):
+             for _, valor in presenca.items():
+                 nome = valor.get("nome")
+                 hora_de_entrada = valor.get("hora_de_entrada")
+                 hora_de_saida = valor.get("hora_de_saida")
+                 data = valor.get("data")
+                 print(f"{index + 1}º {data}: {nome} == ({hora_de_entrada}, {hora_de_saida})")
+         
 
     if opcao == "9":
         print("""
